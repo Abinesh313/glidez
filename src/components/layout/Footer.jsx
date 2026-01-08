@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="footer bg-black">
             <div className="container footer-container">
                 <div className="footer-col">
-                    <Link to="/" onClick={()=>window.scrollTo({top:0, behavior:'smooth'})}><h3>Glidez<span className="text-red">Solutions</span></h3></Link>
+                    <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><h3>Glidez <span className="text-red">Solutions</span></h3></Link>
                     <p>Empowering businesses with cutting-edge digital solutions and nurturing the next generation of IT professionals.</p>
                 </div>
 
@@ -25,7 +25,7 @@ const Footer = () => {
                     <h4>Contact Us</h4>
                     <ul className="contact-info">
                         <li><Mail size={16} /> <span>sathish@glidez.org</span></li>
-                        <li><Phone size={16} /> <span>+91-XXXXXXXXXX</span></li>
+                        <li><Phone size={16} /> <span>+91 90438 67290</span></li>
                         <li><MapPin size={16} /> <span>Bengaluru / Tamil Nadu, India</span></li>
                     </ul>
                 </div>

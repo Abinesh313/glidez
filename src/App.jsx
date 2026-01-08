@@ -6,9 +6,12 @@ import Services from './pages/Services';
 import Trainings from './pages/Trainings';
 import Contact from './pages/Contact';
 
+import ScrollToTop from './components/common/ScrollToTop';
+
 function App() {
     return (
         <Router>
+            <ScrollToTop />
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />
