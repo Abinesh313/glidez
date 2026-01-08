@@ -11,8 +11,9 @@ const Header = () => {
         <header className="header">
             <div className="container header-container">
                 <div className="logo">
-                    <Link to="/">
-                        Glidez<span className="text-red">Solutions</span>
+                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <img src="/logo.png" alt="Glidez Solutions" style={{ height: '40px' }} />
+                        <span>Glidez<span className="text-red">Solutions</span></span>
                     </Link>
                 </div>
 

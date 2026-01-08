@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="footer bg-black">
             <div className="container footer-container">
                 <div className="footer-col">
-                    <h3>Glidez<span className="text-red">Solutions</span></h3>
+                    <Link to="/" onClick={()=>window.scrollTo({top:0, behavior:'smooth'})}><h3>Glidez<span className="text-red">Solutions</span></h3></Link>
                     <p>Empowering businesses with cutting-edge digital solutions and nurturing the next generation of IT professionals.</p>
                 </div>
 

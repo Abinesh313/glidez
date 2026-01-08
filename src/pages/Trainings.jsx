@@ -1,7 +1,109 @@
-import React from 'react';
-import { Award, BookOpen } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, X } from 'lucide-react';
+
+const courseData = {
+    // EC-Council
+    "CEH (Certified Ethical Hacker)": {
+        duration: "40 Hours",
+        prerequisites: "Basic networking and operating system knowledge.",
+        syllabus: [
+            "Introduction to Ethical Hacking",
+            "Footprinting and Reconnaissance",
+            "Scanning Networks",
+            "Enumeration",
+            "Vulnerability Analysis",
+            "System Hacking",
+            "Malware Threats",
+            "Sniffing",
+            "Social Engineering",
+            "Denial-of-Service"
+        ]
+    },
+    "CHFI (Computer Hacking Forensic Investigator)": {
+        duration: "40 Hours",
+        prerequisites: "CEH or equivalent knowledge recommended.",
+        syllabus: [
+            "Computer Forensics in Today's World",
+            "Computer Forensics Investigation Process",
+            "Understanding Hard Disks and File Systems",
+            "Data Acquisition and Duplication",
+            "Defeating Anti-Forensics Techniques",
+            "Operating System Forensics",
+            "Network Forensics",
+            "Investigating Web Attacks"
+        ]
+    },
+    "ECIH (Certified Incident Handler)": {
+        duration: "24 Hours",
+        prerequisites: "Experience in IT security.",
+        syllabus: [
+            "Introduction to Incident Handling",
+            "Incident Handling and Response Process",
+            "Forensic Readiness and First Response",
+            "Handling and Responding to Malware Incidents",
+            "Handling and Responding to Email Security Incidents",
+            "Handling and Responding to Network Security Incidents"
+        ]
+    },
+    "CCISO (Certified Chief Information Security Officer)": {
+        duration: "32 Hours",
+        prerequisites: "5 years of IS management experience.",
+        syllabus: [
+            "Governance, Risk, Compliance",
+            "Information Security Controls and Audit Management",
+            "Security Program Management & Operations",
+            "Information Security Core Concepts",
+            "Strategic Planning, Finance, Procurement, and Vendor Management"
+        ]
+    },
+
+    // ISACA
+    "CISM (Certified Information Security Manager)": {
+        duration: "32 Hours",
+        prerequisites: "5 years of work experience in information security management.",
+        syllabus: [
+            "Information Security Governance",
+            "Information Risk Management",
+            "Information Security Program Development and Management",
+            "Information Security Incident Management"
+        ]
+    },
+    "CISA (Certified Information Systems Auditor)": {
+        duration: "40 Hours",
+        prerequisites: "5 years of professional IS auditing, control or security work experience.",
+        syllabus: [
+            "Information Systems Auditing Process",
+            "Governance and Management of IT",
+            "Information Systems Acquisition, Development and Implementation",
+            "Information Systems Operations and Business Resilience",
+            "Protection of Information Assets"
+        ]
+    },
+
+    // Default fallback for others
+    "default": {
+        duration: "Contact us for details",
+        prerequisites: "Contact us for details",
+        syllabus: [
+            "Comprehensive curriculum available upon request.",
+            "Hands-on labs and practical exercises.",
+            "Expert-led instruction."
+        ]
+    }
+};
 
 const Trainings = () => {
+    const [selectedCourse, setSelectedCourse] = useState(null);
+
+    const handleCourseClick = (courseName) => {
+        const data = courseData[courseName] || courseData["default"];
+        setSelectedCourse({ name: courseName, ...data });
+    };
+
+    const closeModal = () => {
+        setSelectedCourse(null);
+    };
+
     return (
         <div className="trainings-page">
             <section className="bg-black text-white section-padding text-center">
@@ -13,62 +115,75 @@ const Trainings = () => {
 
             <div className="container section-padding">
 
+                {/* EC-Council */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> EC-Council Courses</h2>
                     <div className="course-grid">
-                        <div className="course-card">CEH (Certified Ethical Hacker)</div>
-                        <div className="course-card">CHFI (Computer Hacking Forensic Investigator)</div>
-                        <div className="course-card">ECIH (Certified Incident Handler)</div>
-                        <div className="course-card">CCISO (Certified Chief Information Security Officer)</div>
+                        {["CEH (Certified Ethical Hacker)", "CHFI (Computer Hacking Forensic Investigator)", "ECIH (Certified Incident Handler)", "CCISO (Certified Chief Information Security Officer)"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* ISACA */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> ISACA Courses</h2>
                     <div className="course-grid">
-                        <div className="course-card">CISM (Certified Information Security Manager)</div>
-                        <div className="course-card">CISA (Certified Information Systems Auditor)</div>
-                        <div className="course-card">CRISC (Risk and Information Systems Control)</div>
-                        <div className="course-card">CGEIT (Governance of Enterprise IT)</div>
-                        <div className="course-card">AAIA (Advanced Audit & Information Assurance)</div>
+                        {["CISM (Certified Information Security Manager)", "CISA (Certified Information Systems Auditor)", "CRISC (Risk and Information Systems Control)", "CGEIT (Governance of Enterprise IT)", "AAIA (Advanced Audit & Information Assurance)"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* ISC2 */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> ISC² Courses</h2>
                     <div className="course-grid">
-                        <div className="course-card">CISSP (Certified Information Systems Security Professional)</div>
-                        <div className="course-card">CCSP (Certified Cloud Security Professional)</div>
-                        <div className="course-card">CC (Certified in Cybersecurity)</div>
+                        {["CISSP (Certified Information Systems Security Professional)", "CCSP (Certified Cloud Security Professional)", "CC (Certified in Cybersecurity)"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* CompTIA */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> CompTIA Certifications</h2>
                     <div className="course-grid">
-                        <div className="course-card">CompTIA Security+</div>
-                        <div className="course-card">CompTIA Network+</div>
-                        <div className="course-card">CompTIA CySA+</div>
-                        <div className="course-card">CompTIA PenTest+</div>
-                        <div className="course-card">CompTIA CASP+</div>
+                        {["CompTIA Security+", "CompTIA Network+", "CompTIA CySA+", "CompTIA PenTest+", "CompTIA CASP+"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* ITIL */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> ITIL Certifications</h2>
                     <div className="course-grid">
-                        <div className="course-card">ITIL Foundation</div>
-                        <div className="course-card">ITIL Practitioner</div>
-                        <div className="course-card">ITIL Intermediate & Expert Levels</div>
+                        {["ITIL Foundation", "ITIL Practitioner", "ITIL Intermediate & Expert Levels"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
+                {/* ISO */}
                 <div className="training-category">
                     <h2 className="category-title"><Award className="mr-2" /> ISO & Other Trainings</h2>
                     <div className="course-grid">
-                        <div className="course-card">ISO 27001 Lead Auditor / Lead Implementer</div>
-                        <div className="course-card">ISO 22301 Business Continuity</div>
-                        <div className="course-card">ISO 31000 Risk Management</div>
+                        {["ISO 27001 Lead Auditor / Lead Implementer", "ISO 22301 Business Continuity", "ISO 31000 Risk Management"].map(course => (
+                            <div key={course} className="course-card" onClick={() => handleCourseClick(course)}>
+                                {course}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -78,6 +193,40 @@ const Trainings = () => {
                 </div>
 
             </div>
+
+            {/* Modal */}
+            {selectedCourse && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}><X size={24} /></button>
+
+                        <h2 className="text-red mb-4">{selectedCourse.name}</h2>
+
+                        <div className="modal-section">
+                            <h4>Duration</h4>
+                            <p>{selectedCourse.duration}</p>
+                        </div>
+
+                        <div className="modal-section">
+                            <h4>Prerequisites</h4>
+                            <p>{selectedCourse.prerequisites}</p>
+                        </div>
+
+                        <div className="modal-section">
+                            <h4>Syllabus</h4>
+                            <ul>
+                                {selectedCourse.syllabus.map((item, index) => (
+                                    <li key={index}>• {item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="mt-5 text-center">
+                            <a href="/contact" className="btn btn-primary">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
