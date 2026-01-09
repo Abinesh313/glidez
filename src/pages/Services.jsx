@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BarChart, Code, Globe, Shield, X, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BarChart, Code, Globe, Shield, X, CheckCircle, Briefcase } from 'lucide-react';
 
 const securityServices = [
     {
@@ -79,6 +80,65 @@ const securityServices = [
     }
 ];
 
+const otherServices = [
+    {
+        id: "digital-marketing",
+        title: "Digital Marketing",
+        icon: <BarChart size={40} />,
+        description: "Boost your brand visibility with our tailored digital marketing strategies.",
+        details: [
+            "Social Media Marketing (SMM)",
+            "Search Engine Marketing (SEM)",
+            "Content Marketing & Copywriting",
+            "Email Campaigns & Automation",
+            "Analytics & Performance Tracking"
+        ],
+        outcome: "Increased brand awareness, lead generation, and measurable ROI."
+    },
+    {
+        id: "website-development",
+        title: "Website Development",
+        icon: <Code size={40} />,
+        description: "We build modern, scalable, and secure websites.",
+        details: [
+            "Custom Web Applications",
+            "E-commerce Solutions",
+            "Corporate Websites & Portals",
+            "Responsive & Mobile-Friendly Designs",
+            "Maintenance & Support"
+        ],
+        outcome: "A high-performance, secure, and user-centric digital presence."
+    },
+    {
+        id: "seo-services",
+        title: "SEO Services",
+        icon: <Globe size={40} />,
+        description: "Rank higher, attract more traffic, and grow your business.",
+        details: [
+            "On-Page & Off-Page SEO",
+            "Technical SEO Audits",
+            "Keyword Research & Strategy",
+            "Local SEO Optimization",
+            "Continuous Monitoring & Reporting"
+        ],
+        outcome: "Improved search rankings, organic traffic, and online visibility."
+    },
+    {
+        id: "internships",
+        title: "Internships",
+        icon: <Briefcase size={40} />,
+        description: "Gain practical, hands-on experience in the latest technologies.",
+        details: [
+            "Java Full Stack Development",
+            "Python Full Stack Development",
+            "Data Science & AI/ML",
+            "Cybersecurity & Ethical Hacking",
+            "Web Development (MERN Stack and Etc...)"
+        ],
+        outcome: "Real-world project experience and industry readiness."
+    }
+];
+
 const Services = () => {
     const [selectedService, setSelectedService] = useState(null);
 
@@ -94,9 +154,9 @@ const Services = () => {
             <div className="container section-padding">
 
                 {/* Information Security Services - MAIN */}
-                <div className="service-detail-row" style={{ display: 'block' }}>
+                <div id="information-security" className="service-detail-row" style={{ display: 'block' }}>
                     <div className="text-center mb-5">
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Information Security Services</h2>
+                        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Information Security <span className="text-red">Services</span></h2>
                         <p className="max-w-2xl mx-auto text-lg text-gray-600">At Glidez Solutions, we help organizations protect their applications, cloud infrastructure, and sensitive data through practical, business-focused information security services.</p>
                     </div>
 
@@ -115,58 +175,21 @@ const Services = () => {
                 </div>
 
                 <div className="mt-5 pt-5">
-                    <h2 className="text-center mb-5 mt-5">Other <span className="text-red">Services</span></h2>
+                    <h2 className="text-center mb-5 mt-5" style={{ fontSize: '2rem', marginTop: '20px' }}>Other <span className="text-red">Services</span></h2>
                 </div>
                 <hr className="divider" />
 
-                {/* Digital Marketing */}
-                <div className="service-detail-row">
-                    <div className="service-icon"><BarChart size={48} /></div>
-                    <div className="service-content">
-                        <h2>1. Digital Marketing</h2>
-                        <p>Boost your brand visibility with our tailored digital marketing strategies.</p>
-                        <ul>
-                            <li>Social Media Marketing (SMM)</li>
-                            <li>Search Engine Marketing (SEM)</li>
-                            <li>Content Marketing & Copywriting</li>
-                            <li>Email Campaigns & Automation</li>
-                            <li>Analytics & Performance Tracking</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr className="divider" />
-
-                {/* Website Development */}
-                <div className="service-detail-row">
-                    <div className="service-icon"><Code size={48} /></div>
-                    <div className="service-content">
-                        <h2>2. Website Development</h2>
-                        <p>We build modern, scalable, and secure websites.</p>
-                        <ul>
-                            <li>Custom Web Applications</li>
-                            <li>E-commerce Solutions</li>
-                            <li>Corporate Websites & Portals</li>
-                            <li>Responsive & Mobile-Friendly Designs</li>
-                            <li>Maintenance & Support</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr className="divider" />
-
-                {/* SEO */}
-                <div className="service-detail-row">
-                    <div className="service-icon"><Globe size={48} /></div>
-                    <div className="service-content">
-                        <h2>3. SEO Services</h2>
-                        <p>Rank higher, attract more traffic, and grow your business.</p>
-                        <ul>
-                            <li>On-Page & Off-Page SEO</li>
-                            <li>Technical SEO Audits</li>
-                            <li>Keyword Research & Strategy</li>
-                            <li>Local SEO Optimization</li>
-                            <li>Continuous Monitoring & Reporting</li>
-                        </ul>
-                    </div>
+                <div className="services-grid">
+                    {otherServices.map((service, index) => (
+                        <div key={index} id={service.id} className="service-card" onClick={() => setSelectedService(service)} style={{ cursor: 'pointer', border: '1px solid #eee' }}>
+                            <div className="icon-box-small mb-3 text-red">
+                                {service.icon}
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                            <p className="text-sm text-gray-600 mb-3">{service.description}</p>
+                            <span className="text-red font-semibold text-sm">View Details →</span>
+                        </div>
+                    ))}
                 </div>
 
             </div>
@@ -201,7 +224,11 @@ const Services = () => {
                         </div>
 
                         <div className="mt-5 text-center">
-                            <a href="/contact" className="btn btn-primary">Get a Quote</a>
+                            {selectedService.id === 'internships' ? (
+                                <Link to="/contact?interest=Internship Inquiry" className="btn btn-primary">Apply Now</Link>
+                            ) : (
+                                <Link to="/contact" className="btn btn-primary">Get a Quote</Link>
+                            )}
                         </div>
                     </div>
                 </div>

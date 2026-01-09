@@ -5,7 +5,7 @@ import { ExternalLink } from 'lucide-react';
 
 // Vendor Data
 const vendorData = [
-    { name: "Microsoft", url: "https://www.microsoft.com/en-us/learning", image: "/partners/microsoft.png" },
+    { name: "Microsoft", url: "https://learn.microsoft.com/", image: "/partners/microsoft.png" },
     { name: "Cisco", url: "https://www.cisco.com/c/en/us/training-events/training-certifications.html", image: "/partners/cisco.png" },
     { name: "AWS", url: "https://aws.amazon.com/training/", image: "/partners/aws.png" },
     { name: "VMware", url: "https://www.vmware.com/learning.html", image: "/partners/vmware.webp" },

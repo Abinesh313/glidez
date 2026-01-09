@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -18,11 +18,11 @@ const Header = () => {
                 </div>
 
                 <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-                    <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-                    <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-                    <Link to="/services" className="nav-link" onClick={() => setIsMenuOpen(false)}>Services</Link>
-                    <Link to="/trainings" className="nav-link" onClick={() => setIsMenuOpen(false)}>Trainings</Link>
-                    <Link to="/contact" className="nav-link btn btn-primary" onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
+                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+                    <NavLink to="/services" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</NavLink>
+                    <NavLink to="/trainings" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Trainings</NavLink>
+                    <NavLink to="/contact" className={({ isActive }) => `nav-link btn btn-primary ${isActive ? '' : ''}`} onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
                 </nav>
 
                 <div className="mobile-menu-btn" onClick={toggleMenu}>

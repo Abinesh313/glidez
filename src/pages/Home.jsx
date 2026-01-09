@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Code, BarChart, Globe, Lock } from 'lucide-react';
+import { ArrowRight, Shield, Code, BarChart, Globe, Lock, Briefcase } from 'lucide-react';
+
+
 
 const Home = () => {
     return (
@@ -23,7 +25,7 @@ const Home = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-half">
-                            <h2>About <span className="text-red">Us</span></h2>
+                            <h1>About <span className="text-red">Us</span></h1>
                             <p>Founded in 2025, Glidez Solutions is a forward-thinking IT company dedicated to delivering quality services and world-class IT trainings. Our mission is to empower businesses with cutting-edge digital solutions while nurturing the next generation of IT professionals through globally recognized certifications.</p>
                             <Link to="/about" className="learn-more-link">Learn More <ArrowRight size={16} /></Link>
                         </div>
@@ -35,36 +37,41 @@ const Home = () => {
             <section className="section-padding bg-gray">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2>Our <span className="text-red">Services</span></h2>
+                        <h1>Our <span className="text-red">Services</span></h1>
                         <p>We specialize in a wide range of IT solutions.</p>
                     </div>
 
                     <div className="services-grid">
-                        <div className="service-card">
+                        <Link to="/services#information-security" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <div className="icon-box"><Shield size={32} /></div>
+                            <h3>Information Security</h3>
+                            <p>Protect your applications and cloud infrastructure.</p>
+                        </Link>
+                        <Link to="/services#digital-marketing" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <div className="icon-box"><BarChart size={32} /></div>
                             <h3>Digital Marketing</h3>
                             <p>Boost your brand visibility with customized strategies.</p>
-                        </div>
-                        <div className="service-card">
+                        </Link>
+                        <Link to="/services#website-development" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <div className="icon-box"><Code size={32} /></div>
                             <h3>Website Development</h3>
                             <p>Modern, scalable, and secure websites for your business.</p>
-                        </div>
-                        <div className="service-card">
+                        </Link>
+                        <Link to="/services#seo-services" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <div className="icon-box"><Globe size={32} /></div>
                             <h3>SEO Services</h3>
                             <p>Rank higher and attract more traffic.</p>
-                        </div>
-                        <div className="service-card">
-                            <div className="icon-box"><Shield size={32} /></div>
-                            <h3>Cybersecurity</h3>
-                            <p>Advanced security solutions to protect your assets.</p>
-                        </div>
-                        <div className="service-card">
+                        </Link>
+                        <Link to="/trainings" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <div className="icon-box"><Lock size={32} /></div>
                             <h3>IT Trainings</h3>
                             <p>Globally recognized certifications (EC-Council, ISACA, etc.).</p>
-                        </div>
+                        </Link>
+                        <Link to="/services#internships" className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <div className="icon-box"><Briefcase size={32} /></div>
+                            <h3>Internships</h3>
+                            <p>Gain real-world experience with our internship programs.</p>
+                        </Link>
                     </div>
 
                     <div className="text-center mt-4">
@@ -73,11 +80,40 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Our Clients */}
+            <section className="section-padding bg-gray">
+                <div className="container">
+                    <div className="section-header text-center">
+                        <h1>Our Trusted <span className="text-red">Clients</span></h1>
+                        <p>Proud to partner with industry leaders driving innovation.</p>
+                    </div>
+
+                    <div className="clients-marquee-container">
+                        <div className="clients-track">
+                            {[...Array(6)].map((_, i) => (
+                                <React.Fragment key={i}>
+                                    <div className="client-card">
+                                        <img src="/partners/viacharging.jpg" alt="Via Charging" className="client-logo" />
+                                        <h3>Via Charging</h3>
+                                        <p className="text-sm text-gray-600">Revolutionizing electric vehicle infrastructure with smart, scalable charging solutions.</p>
+                                    </div>
+                                    <div className="client-card">
+                                        <img src="/partners/ellorahotels.jpg" alt="Ellora Hotels" className="client-logo" />
+                                        <h3>Ellora Hotels</h3>
+                                        <p className="text-sm text-gray-600">Redefining luxury hospitality with seamless digital guest experiences and premium services.</p>
+                                    </div>
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Why Choose Us */}
             <section className="section-padding">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2>Why Choose <span className="text-red">Glidez Solutions?</span></h2>
+                        <h1>Why Choose <span className="text-red">Glidez Solutions?</span></h1>
                     </div>
 
                     <div className="features-grid">

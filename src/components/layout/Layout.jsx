@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import WhatsAppButton from '../common/WhatsAppButton';
 
 const Layout = ({ children }) => {
     return (
@@ -9,6 +10,7 @@ const Layout = ({ children }) => {
             <main className="main-content">
                 {children}
             </main>
+            <WhatsAppButton />
             <Footer />
         </div>
     );
