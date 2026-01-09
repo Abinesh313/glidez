@@ -18,10 +18,10 @@ const Header = () => {
                 </div>
 
                 <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-                    <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
-                    <NavLink to="/services" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</NavLink>
-                    <NavLink to="/trainings" className={({ isActive }) => `nav-link ${isActive ? 'text-red font-bold' : ''}`} onClick={() => setIsMenuOpen(false)}>Trainings</NavLink>
+                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+                    <NavLink to="/services" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</NavLink>
+                    <NavLink to="/trainings" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Trainings</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => `nav-link btn btn-primary ${isActive ? '' : ''}`} onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
                 </nav>
 

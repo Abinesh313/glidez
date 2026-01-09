@@ -158,6 +158,14 @@ h6 {
     color: var(--primary-color);
 }
 
+.nav-link.active-link {
+    color: var(--primary-color);
+}
+
+.nav-link.btn-primary {
+    color: var(--text-white) !important;
+}
+
 .mobile-menu-btn {
     display: none;
     cursor: pointer;
