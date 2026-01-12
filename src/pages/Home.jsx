@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Code, BarChart, Globe, Lock, Briefcase } from 'lucide-react';
-
-
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <div className="home-page">
+            <Helmet>
+                <title>Glidez Solutions - Empowering IT Excellence</title>
+                <meta name="description" content="Empowering IT Excellence through top-tier Services & Training. We offer Web Development, Digital Marketing, and certified IT training programs." />
+            </Helmet>
             {/* Hero Section */}
             <section className="hero text-center">
                 <div className="hero-overlay"></div>

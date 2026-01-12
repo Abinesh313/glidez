@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BarChart, Code, Globe, Shield, X, CheckCircle, Briefcase } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const securityServices = [
     {
@@ -144,6 +145,10 @@ const Services = () => {
 
     return (
         <div className="services-page">
+            <Helmet>
+                <title>IT Services | Glidez Solutions</title>
+                <meta name="description" content="Explore our comprehensive IT services including Information Security, Digital Marketing, Website Development, and SEO Services." />
+            </Helmet>
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>Our <span className="text-red">Services</span></h1>

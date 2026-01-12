@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
-
+import { Helmet } from 'react-helmet-async';
 
 
 // Vendor Data
@@ -32,6 +32,10 @@ const vendorData = [
 const Trainings = () => {
     return (
         <div className="trainings-page">
+            <Helmet>
+                <title>IT Trainings & Certifications | Glidez Solutions</title>
+                <meta name="description" content="Advance your career with globally recognized IT training and certifications from Microsoft, AWS, Cisco, and more." />
+            </Helmet>
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>Trainings & <span className="text-red">Certifications</span></h1>

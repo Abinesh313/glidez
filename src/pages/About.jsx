@@ -1,8 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
     return (
         <div className="about-page">
+            <Helmet>
+                <title>About Us | Glidez Solutions</title>
+                <meta name="description" content="Learn more about Glidez Solutions - your partner for digital transformation and advanced IT training. Discover our mission, vision, and team." />
+            </Helmet>
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>About <span className="text-red">Us</span></h1>

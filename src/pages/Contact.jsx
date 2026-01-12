@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const Contact = () => {
     const [isSending, setIsSending] = useState(false);
@@ -52,6 +53,10 @@ const Contact = () => {
 
     return (
         <div className="contact-page">
+            <Helmet>
+                <title>Contact Us | Glidez Solutions</title>
+                <meta name="description" content="Get in touch with Glidez Solutions. Contact us for IT services, training inquiries, or internships. We are here to help." />
+            </Helmet>
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>Contact <span className="text-red">Us</span></h1>
