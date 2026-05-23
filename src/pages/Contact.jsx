@@ -161,9 +161,9 @@ const Contact = () => {
                                 {messageStatus === 'success' && <p style={{ color: 'green', marginBottom: '1rem' }}>Message sent successfully!</p>}
                                 {messageStatus === 'error' && <p style={{ color: 'red', marginBottom: '1rem' }}>Failed to send message. Please try again.</p>}
 
-                                <button type="submit" className="btn btn-primary" disabled={isSending}>
+                                <button type="submit" className="btn btn-primary" disabled={isSending} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                                     {isSending ? 'Sending...' : 'Send Message'}
-                                    {!isSending && <Send size={16} className="ml-2" />}
+                                    {!isSending && <Send size={16} />}
                                 </button>
                             </form>
                         </div>

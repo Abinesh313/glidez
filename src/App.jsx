@@ -9,6 +9,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import Disclaimer from './pages/Disclaimer';
 import NotFound from './pages/NotFound';
+import CertificateVerify from './pages/CertificateVerify';
 import ScrollToTop from './components/common/ScrollToTop';
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -28,6 +29,7 @@ function App() {
                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                         <Route path="/terms" element={<Terms />} />
                         <Route path="/disclaimer" element={<Disclaimer />} />
+                        <Route path="/verify-certificate" element={<CertificateVerify />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Layout>
