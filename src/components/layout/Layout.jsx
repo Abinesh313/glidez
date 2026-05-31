@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from '../common/WhatsAppButton';
+import LinkedInPopup from '../common/LinkedInPopup';
 
 const Layout = ({ children }) => {
     return (
@@ -11,6 +12,7 @@ const Layout = ({ children }) => {
                 {children}
             </main>
             <WhatsAppButton />
+            <LinkedInPopup />
             <Footer />
         </div>
     );

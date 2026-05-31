@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -9,6 +9,14 @@ const Footer = () => {
                 <div className="footer-col">
                     <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><h3>Glidez <span className="text-red">Solutions</span></h3></Link>
                     <p>Empowering businesses with cutting-edge digital solutions and nurturing the next generation of IT professionals.</p>
+                    <div className="social-links">
+                        <a href="https://www.linkedin.com/company/glidez/" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+                            <Linkedin size={20} />
+                        </a>
+                        <a href="https://www.instagram.com/glidez_solutions/" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+                            <Instagram size={20} />
+                        </a>
+                    </div>
                 </div>
 
                 <div className="footer-col">
@@ -17,6 +25,7 @@ const Footer = () => {
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/trainings">Trainings</Link></li>
+                        <li><Link to="/blogs">Blogs</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         <li><Link to="/privacy-policy">Privacy Policy</Link></li>
                         <li><Link to="/terms">Terms & Conditions</Link></li>

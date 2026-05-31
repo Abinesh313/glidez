@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
                 <br />
 
                 <h3>1. Introduction</h3>
-                <p>Welcome to Glidez Solutions ("we," "our," or "us"). We are committed to protecting your privacy and ensuring your personal information is handled in a safe and responsible manner. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [glidez.org], including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site").</p>
+                <p>Welcome to Glidez Solutions ("we," "our," or "us"). We are committed to protecting your privacy and ensuring your personal information is handled in a safe and responsible manner. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://glidez.org" target="_blank" rel="noopener noreferrer"><i>glidez.org</i></a>, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site").</p>
 
                 <h3>2. Information We Collect</h3>
                 <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>

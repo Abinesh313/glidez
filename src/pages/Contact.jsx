@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
@@ -9,6 +9,8 @@ const Contact = () => {
     const location = useLocation();
     const [serviceInterest, setServiceInterest] = useState("General Inquiry");
 
+    const formRef = useRef(null);
+
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const interest = params.get('interest');
@@ -17,37 +19,19 @@ const Contact = () => {
         }
     }, [location]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         setIsSending(true);
         setMessageStatus(null);
+    };
 
-        const formData = new FormData(e.target);
-
-        try {
-            // FormSubmit requires formData directly for file uploads
-            // Ensure your FormSubmit account is activated for file uploads if needed
-            const response = await fetch("https://formsubmit.co/ajax/sathish@glidez.org", {
-                method: "POST",
-                body: formData
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                console.log(result);
-                setMessageStatus('success');
-                e.target.reset();
-                setServiceInterest("General Inquiry");
-            } else {
-                console.log(response);
-                setMessageStatus('error');
-            }
-        } catch (error) {
-            console.error(error);
-            setMessageStatus('error');
-        } finally {
+    const handleIframeLoad = () => {
+        if (isSending) {
             setIsSending(false);
+            setMessageStatus('success');
+            if (formRef.current) {
+                formRef.current.reset();
+            }
+            setServiceInterest("General Inquiry");
         }
     };
 
@@ -102,12 +86,30 @@ const Contact = () => {
                         {/* Contact Form */}
                         <div className="contact-form-container">
                             <h2>Send a Message</h2>
-                            <form className="contact-form" onSubmit={handleSubmit} encType="multipart/form-data">
+                            {/* Hidden iframe to handle FormSubmit submission without page reload or CORS errors */}
+                            <iframe 
+                                name="formsubmit_iframe" 
+                                style={{ display: 'none' }} 
+                                onLoad={handleIframeLoad}
+                            ></iframe>
+
+                            <form 
+                                ref={formRef}
+                                className="contact-form" 
+                                action="https://formsubmit.co/sathish@glidez.org" 
+                                method="POST" 
+                                target="formsubmit_iframe"
+                                onSubmit={handleSubmit} 
+                                encType="multipart/form-data"
+                            >
+                                {/* CC to secondary email */}
+                                <input type="hidden" name="_cc" value="gabineshpgunasekaran313@gmail.com" readOnly />
+
                                 {/* Anti-spam honeypot (optional but good practice) */}
                                 <input type="text" name="_honey" style={{ display: 'none' }} />
 
                                 {/* Disable Captcha (optional) - defaults to true */}
-                                <input type="hidden" name="_captcha" value="false" />
+                                <input type="hidden" name="_captcha" value="false" readOnly />
 
                                 <div className="form-group">
                                     <label>Name</label>

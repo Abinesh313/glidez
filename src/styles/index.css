@@ -200,6 +200,24 @@ h6 {
     color: var(--primary-color);
 }
 
+.social-links {
+    margin-top: 35px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    color: #ccc;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-speed);
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}
+
 .contact-info li {
     display: flex;
     align-items: center;
@@ -1353,3 +1371,292 @@ h6 {
         padding: 28px 20px 16px;
     }
 }
+
+/* ============================================================
+   LINKEDIN FLOATING POPUP
+   ============================================================ */
+.linkedin-popup {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    z-index: 1000;
+    transform: translateX(-120%);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.linkedin-popup.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.linkedin-popup-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: var(--secondary-color);
+    position: relative;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.linkedin-popup-content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.linkedin-popup-icon {
+    background-color: #0A66C2;
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(10, 102, 194, 0.3);
+    flex-shrink: 0;
+}
+
+.linkedin-popup-text {
+    display: flex;
+    flex-direction: column;
+    padding-right: 15px;
+}
+
+.linkedin-popup-title {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.linkedin-popup-subtitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.linkedin-popup-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.linkedin-popup-close:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}
+
+/* Mobile Responsive LinkedIn Popup */
+@media (max-width: 768px) {
+    .linkedin-popup {
+        bottom: 90px;
+        left: 20px;
+        right: auto;
+        max-width: 250px;
+        transform: translateY(150%);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+
+    .linkedin-popup.visible {
+        transform: translateY(0);
+    }
+
+    .linkedin-popup-content {
+        padding: 8px 12px;
+        gap: 10px;
+        border-radius: 8px;
+    }
+
+    .linkedin-popup-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+    }
+
+    .linkedin-popup-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .linkedin-popup-title {
+        font-size: 0.65rem;
+        margin-bottom: 0px;
+    }
+
+    .linkedin-popup-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .linkedin-popup-close {
+        top: 4px;
+        right: 4px;
+    }
+}
+
+/* ============================================================
+   SOCIAL CALLOUT
+   ============================================================ */
+.social-callout {
+    background-color: var(--gray-100);
+}
+
+.social-callout-btns .btn {
+    transition: all var(--transition-speed) ease;
+}
+
+.social-callout-btns .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   CERTIFICATE ACTIONS ROW
+   ============================================================ */
+.cert-actions-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.cert-btn-linkedin {
+    border: 2px solid #0A66C2 !important;
+    color: #0A66C2 !important;
+    background: transparent;
+}
+
+/* ============================================================
+   ADMIN CONTROLS & CERTIFICATE GENERATOR
+   ============================================================ */
+
+.admin-controls-section {
+    position: relative;
+    background: linear-gradient(to bottom, #fafafa, #f0f0f0);
+}
+
+.admin-panel-card {
+    transition: all 0.4s ease;
+}
+
+.admin-panel-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+.admin-passcode-form h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.admin-passcode-form input[type="password"] {
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fafafa;
+}
+
+.admin-passcode-form input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.15);
+    background-color: #ffffff;
+}
+
+.admin-creator-panel input[type="text"],
+.admin-creator-panel input[type="date"],
+.admin-creator-panel select {
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+    background-color: #fafafa;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.admin-creator-panel input[type="text"]:focus,
+.admin-creator-panel input[type="date"]:focus,
+.admin-creator-panel select:focus {
+    outline: none;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.12);
+    background-color: #ffffff;
+}
+
+.admin-creator-panel label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.id-preview-box {
+    background: linear-gradient(135deg, #f7f9fa 0%, #f0f4f8 100%) !important;
+    border: 1px dashed var(--primary-color) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.id-preview-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.id-preview-box strong {
+    transition: color 0.3s;
+}
+
+.id-preview-box button {
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.form-submit-row button[type="submit"] {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+}
+
+.form-submit-row button[type="submit"]:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+}
+
+.form-submit-row button[type="submit"]:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Responsive grid for admin panel inputs */
+@media (max-width: 768px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .admin-panel-card {
+        padding: 24px 16px !important;
+    }
+    
+    .id-preview-box {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        align-items: center !important;
+    }
+}

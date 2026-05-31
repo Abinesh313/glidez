@@ -14,7 +14,7 @@ const Terms = () => {
                 <br />
 
                 <h3>1. Agreement to Terms</h3>
-                <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and Glidez Solutions ("we," "us" or "our"), concerning your access to and use of the [glidez.org] website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the "Site").</p>
+                <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and Glidez Solutions ("we," "us" or "our"), concerning your access to and use of the <a href="https://glidez.org" target="_blank" rel="noopener noreferrer"><i>glidez.org</i></a> website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the "Site").</p>
 
                 <h3>2. Intellectual Property Rights</h3>
                 <p>Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the "Content") and the trademarks, service marks, and logos contained therein (the "Marks") are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws and various other intellectual property rights.</p>

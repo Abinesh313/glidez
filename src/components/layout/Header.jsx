@@ -22,6 +22,7 @@ const Header = () => {
                     <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
                     <NavLink to="/services" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</NavLink>
                     <NavLink to="/trainings" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Trainings</NavLink>
+                    <NavLink to="/blogs" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Blogs</NavLink>
                     <NavLink to="/verify-certificate" className={({ isActive }) => `nav-link ${isActive ? 'active-link' : ''}`} onClick={() => setIsMenuOpen(false)}>Verify Certificate</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => `nav-link btn btn-primary ${isActive ? '' : ''}`} onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
                 </nav>

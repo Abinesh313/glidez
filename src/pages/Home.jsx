@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Code, BarChart, Globe, Lock, Briefcase } from 'lucide-react';
+import { ArrowRight, Shield, Code, BarChart, Globe, Lock, Briefcase, Linkedin, Instagram } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
@@ -107,6 +107,36 @@ const Home = () => {
                                     </div>
                                 </React.Fragment>
                             ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Social Media Callout Section */}
+            <section className="section-padding bg-gray social-callout">
+                <div className="container">
+                    <div className="section-header text-center" style={{ marginBottom: 0 }}>
+                        <h1>Connect With <span className="text-red">Us</span></h1>
+                        <p>Stay updated with our latest tech tips, student success stories, and cybersecurity alerts on our social channels.</p>
+                        <div className="social-callout-btns" style={{ marginTop: '30px', display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <a
+                                href="https://www.linkedin.com/company/glidez/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline"
+                                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
+                            >
+                                <Linkedin size={20} /> Follow on LinkedIn
+                            </a>
+                            <a
+                                href="https://www.instagram.com/glidez_solutions/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline"
+                                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
+                            >
+                                <Instagram size={20} /> Follow on Instagram
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import Terms from './pages/Terms';
 import Disclaimer from './pages/Disclaimer';
 import NotFound from './pages/NotFound';
 import CertificateVerify from './pages/CertificateVerify';
+import Blogs from './pages/Blogs';
 import ScrollToTop from './components/common/ScrollToTop';
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/services" element={<Services />} />
                         <Route path="/trainings" element={<Trainings />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/blogs" element={<Blogs />} />
                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                         <Route path="/terms" element={<Terms />} />
                         <Route path="/disclaimer" element={<Disclaimer />} />
