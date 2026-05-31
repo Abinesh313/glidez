@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Search, CheckCircle, XCircle, Award, Calendar, User, BookOpen, Star, Clock, AlertCircle, Linkedin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { jsPDF } from 'jspdf';
-import { CERT_SHEET_URL, GOOGLE_SCRIPT_URL, parseCSV } from '../data/certificates';
+import { GOOGLE_SCRIPT_URL } from '../data/certificates';
 
 const parseIssuedDate = (dateStr) => {
     if (!dateStr) return { year: null, month: null };
@@ -54,116 +54,6 @@ const parseIssuedDate = (dateStr) => {
     }
     
     return { year: null, month: null };
-};
-
-const getDepartmentCode = (courseName) => {
-    const lower = courseName.toLowerCase();
-    if (
-        lower.includes('hack') ||
-        lower.includes('ceh') ||
-        lower.includes('ethical') ||
-        lower.includes('security') ||
-        lower.includes('wapt') ||
-        lower.includes('cyber') ||
-        lower.includes('pentest') ||
-        lower.includes('cissp') ||
-        lower.includes('cisa') ||
-        lower.includes('cism') ||
-        lower.includes('comptia')
-    ) {
-        return 'SEC';
-    }
-    if (
-        lower.includes('developer') ||
-        lower.includes('programming') ||
-        lower.includes('fsd') ||
-        lower.includes('web') ||
-        lower.includes('development') ||
-        lower.includes('java') ||
-        lower.includes('python') ||
-        lower.includes('code') ||
-        lower.includes('react')
-    ) {
-        return 'DEV';
-    }
-    if (
-        lower.includes('marketing') ||
-        lower.includes('seo') ||
-        lower.includes('ads') ||
-        lower.includes('social') ||
-        lower.includes('sem') ||
-        lower.includes('content')
-    ) {
-        return 'MKT';
-    }
-    return 'GEN';
-};
-
-const getCourseAbbreviation = (courseName) => {
-    const lower = courseName.toLowerCase();
-    
-    // Explicit custom overrides
-    if (lower.includes('aws')) return 'AWS';
-    if (lower.includes('ceh') || lower.includes('ethical hacker')) return 'CEH';
-    if (lower.includes('pmp') || lower.includes('project management')) return 'PMP';
-    if (lower.includes('wapt') || lower.includes('web application penetration')) return 'WAPT';
-    if (lower.includes('seo')) return 'SEO';
-    if (lower.includes('digital marketing')) return 'DMKT';
-    if (lower.includes('web development') || lower.includes('website development')) return 'WDEV';
-    if (lower.includes('python full stack')) return 'PFSD';
-    if (lower.includes('java full stack')) return 'JFSD';
-    if (lower.includes('scrum')) return 'CSM';
-    if (lower.includes('itil')) return 'ITL';
-    if (lower.includes('cfa')) return 'CFA';
-    if (lower.includes('gcp') || lower.includes('google cloud')) return 'GCP';
-    if (lower.includes('security+')) return 'SEC';
-    if (lower.includes('data science')) return 'DAT';
-    
-    // Extract parentheses e.g. "Certified Ethical Hacker (CEH)"
-    const parenMatch = courseName.match(/\(([^)]+)\)/);
-    if (parenMatch && parenMatch[1]) {
-        return parenMatch[1].toUpperCase().replace(/[^A-Z0-9]/g, '');
-    }
-    
-    // Default initial letter extractor
-    const cleanName = courseName.replace(/[^a-zA-Z0-9\s]/g, '');
-    const words = cleanName.trim().split(/\s+/).filter(w => w.length > 0);
-    
-    if (words.length === 1) {
-        return words[0].slice(0, 3).toUpperCase();
-    }
-    
-    const ignoredWords = ['and', 'or', 'of', 'in', 'to', 'for', 'a', 'an', 'the', 'with', 'by'];
-    const keyWords = words.filter(w => !ignoredWords.includes(w.toLowerCase()));
-    
-    if (keyWords.length > 0) {
-        return keyWords.map(w => w[0].toUpperCase()).join('').slice(0, 4);
-    }
-    
-    return words.map(w => w[0].toUpperCase()).join('').slice(0, 4);
-};
-
-const getNextId = (courseName, certificates) => {
-    if (!courseName.trim()) return 'GLZ-CODE-1001';
-    
-    const code = getCourseAbbreviation(courseName).toUpperCase();
-    const prefix = `GLZ-${code}-`;
-    
-    let maxSerial = 1000;
-    
-    certificates.forEach(c => {
-        if (c.id) {
-            const parts = c.id.toUpperCase().split('-');
-            if (parts.includes(code)) {
-                const serialNum = parseInt(parts[parts.length - 1], 10);
-                if (!isNaN(serialNum) && serialNum > maxSerial) {
-                    maxSerial = serialNum;
-                }
-            }
-        }
-    });
-    
-    return `${prefix}${maxSerial + 1}`;
 };
 
 const getCpeCredits = (courseName, duration) => {
@@ -429,9 +319,8 @@ const CertificateVerify = () => {
     const [result, setResult] = useState(null);   // null = idle, false = not found, object = found
     const [loading, setLoading] = useState(false);
     const [shake, setShake] = useState(false);
-    const [certificates, setCertificates] = useState([]);
     const [fetchError, setFetchError] = useState(false);
-    const [dataLoading, setDataLoading] = useState(true);
+    const [dataLoading, setDataLoading] = useState(false);
 
     // Admin Mode States
     const [isAdminParam, setIsAdminParam] = useState(false);
@@ -472,33 +361,8 @@ const CertificateVerify = () => {
         "Digital Marketing"
     ];
 
-    // Fetch certificate data from Google Sheet on mount
-    useEffect(() => {
-        if (!CERT_SHEET_URL || CERT_SHEET_URL === 'PASTE_YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
-            setFetchError(true);
-            setDataLoading(false);
-            return;
-        }
-        fetch(CERT_SHEET_URL)
-            .then((res) => {
-                if (!res.ok) throw new Error('Failed to fetch');
-                return res.text();
-            })
-            .then((csv) => {
-                const parsedCerts = parseCSV(csv);
-                setCertificates(parsedCerts);
-                setDataLoading(false);
-            })
-            .catch(() => {
-                setFetchError(true);
-                setDataLoading(false);
-            });
-    }, []);
-
     // Sync admin/query parameters dynamically when the location changes
     useEffect(() => {
-        if (dataLoading) return;
-
         const params = new URLSearchParams(location.search);
         const queryId = params.get('id') || params.get('certId');
         
@@ -518,15 +382,21 @@ const CertificateVerify = () => {
             setResult(null);
 
             const timer = setTimeout(() => {
-                const cert = certificates.find(
-                    (c) => c.id?.toLowerCase() === cleanId.toLowerCase()
-                ) || null;
-                setLoading(false);
-                if (cert) {
-                    setResult(cert);
-                } else {
-                    setResult(false);
-                }
+                fetch(`${GOOGLE_SCRIPT_URL}?id=${encodeURIComponent(cleanId)}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setLoading(false);
+                        if (data.found) {
+                            setResult(data.certificate);
+                        } else {
+                            setResult(false);
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        setLoading(false);
+                        setResult(false);
+                    });
             }, 300);
 
             return () => clearTimeout(timer);
@@ -535,37 +405,53 @@ const CertificateVerify = () => {
             setResult(null);
             setCertId('');
         }
-    }, [location.search, certificates, dataLoading]);
+    }, [location.search]);
 
-    // Dynamically calculate and suggest ID as admin types
+    // Dynamically calculate and suggest ID as admin types (server-side check)
     useEffect(() => {
-        if (adminForm.courseName.trim()) {
-            const nextId = getNextId(adminForm.courseName, certificates);
-            setGeneratedId(nextId);
+        if (adminForm.courseName.trim() && adminPasscodeToken) {
+            const delayDebounceFn = setTimeout(() => {
+                fetch(`${GOOGLE_SCRIPT_URL}?action=getNextId&course=${encodeURIComponent(adminForm.courseName)}&passcode=${encodeURIComponent(adminPasscodeToken)}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.nextId) {
+                            setGeneratedId(data.nextId);
+                        }
+                    })
+                    .catch((err) => console.error("Error fetching next ID:", err));
+            }, 500); // 500ms debounce
+            
+            return () => clearTimeout(delayDebounceFn);
         } else {
             setGeneratedId('');
         }
-    }, [adminForm.courseName, certificates]);
+    }, [adminForm.courseName, adminPasscodeToken]);
 
     const handleVerify = () => {
-        if (!certId.trim() || dataLoading) return;
+        if (!certId.trim()) return;
         setLoading(true);
         setResult(null);
         setShake(false);
 
-        setTimeout(() => {
-            const cert = certificates.find(
-                (c) => c.id?.toLowerCase() === certId.trim().toLowerCase()
-            ) || null;
-            setLoading(false);
-            if (cert) {
-                setResult(cert);
-            } else {
+        fetch(`${GOOGLE_SCRIPT_URL}?id=${encodeURIComponent(certId.trim())}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setLoading(false);
+                if (data.found) {
+                    setResult(data.certificate);
+                } else {
+                    setResult(false);
+                    setShake(true);
+                    setTimeout(() => setShake(false), 600);
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
                 setResult(false);
                 setShake(true);
                 setTimeout(() => setShake(false), 600);
-            }
-        }, 400);
+            });
     };
 
     const handleUnlockAdmin = (e) => {
@@ -636,14 +522,6 @@ const CertificateVerify = () => {
 
                 // 1. Download dynamic high-res certificate PNG automatically
                 handleDownload(payload, 'png');
-
-                // 2. Re-fetch sheet locally to sync database
-                fetch(CERT_SHEET_URL)
-                    .then(res => res.text())
-                    .then(csv => {
-                        setCertificates(parseCSV(csv));
-                    })
-                    .catch(err => console.error("Database re-sync failed:", err));
 
                 // 3. Reset form (student specific details, keep config details for convenience)
                 setAdminForm(prev => ({

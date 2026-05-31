@@ -22,7 +22,7 @@ export const CERT_SHEET_URL =
 
 // Google Apps Script Web App URL to append new certificate records to Google Sheets.
 // Paste your deployed script URL here.
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2MRjSmPNOPPhYTJHbKWs6RMqojdPf2o9TmVK0h7TlmZ8KEvujVr0RdyeP4RnCDUqXow/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_U0ToGJKJ3OXj8OBNgo_psbduOdGBSQZqpcz7qu-NPnz6WqbayuGOprlCeeZYCa2veA/exec';
 
 // Parses the raw CSV text into an array of certificate objects
 export function parseCSV(csvText) {
