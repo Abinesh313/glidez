@@ -438,6 +438,7 @@ const CertificateVerify = () => {
     const [showAdminPanel, setShowAdminPanel] = useState(false);
     const [isAdminUnlocked, setIsAdminUnlocked] = useState(false);
     const [passcode, setPasscode] = useState('');
+    const [adminPasscodeToken, setAdminPasscodeToken] = useState('');
     const [passcodeError, setPasscodeError] = useState(false);
 
     // Form inputs for dynamic certificate creation
@@ -507,6 +508,7 @@ const CertificateVerify = () => {
         if (!isAdmin) {
             setShowAdminPanel(false);
             setIsAdminUnlocked(false);
+            setAdminPasscodeToken('');
         }
 
         if (queryId) {
@@ -571,6 +573,7 @@ const CertificateVerify = () => {
         setPasscodeError(false);
         if (passcode.trim() === 'glidez@admin26') {
             setIsAdminUnlocked(true);
+            setAdminPasscodeToken(passcode.trim()); // Save the entered passcode
             setPasscode('');
             setAdminMsg({ type: '', text: '' });
         } else {
@@ -604,7 +607,7 @@ const CertificateVerify = () => {
         setAdminMsg({ type: 'loading', text: 'Registering in Google Sheets...' });
 
         const payload = {
-            passcode: 'glidez@admin26',
+            passcode: adminPasscodeToken, // Send the passcode token entered by the admin
             id: generatedId,
             studentName: adminForm.studentName.trim(),
             course: adminForm.courseName.trim(),
