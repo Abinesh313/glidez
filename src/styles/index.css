@@ -1345,10 +1345,15 @@ h6 {
         flex-direction: column;
         gap: 16px;
         text-align: center;
+        padding: 20px 16px !important;
     }
 
     .cert-card-id {
         text-align: center;
+    }
+
+    .cert-card-logo span {
+        font-size: 1.1rem !important;
     }
 
     .cert-details-grid {
@@ -1356,11 +1361,26 @@ h6 {
     }
 
     .cert-detail-item {
-        border-right: none;
+        border-right: none !important;
+        border-bottom: 1px solid var(--gray-200) !important;
+        padding: 14px 16px !important;
+        grid-column: span 1 !important; /* Force CPE credits block to span 1 column instead of 2 */
+    }
+
+    .cert-detail-item:last-child {
+        border-bottom: none !important;
     }
 
     .cert-student-name {
-        font-size: 1.6rem;
+        font-size: 1.6rem !important;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .cert-course-name {
+        font-size: 1.15rem !important;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .cert-info-grid {
@@ -1368,7 +1388,38 @@ h6 {
     }
 
     .cert-card-body {
-        padding: 28px 20px 16px;
+        padding: 24px 16px 16px !important;
+    }
+
+    .admin-panel-card {
+        padding: 24px 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-passcode-input-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+
+    .admin-passcode-input-row input {
+        width: 100% !important;
+    }
+
+    .admin-passcode-input-row button {
+        width: 100% !important;
+    }
+
+    .cert-actions-row {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .cert-actions-row button,
+    .cert-actions-row a {
+        width: 100% !important;
+        justify-content: center !important;
     }
 }
 

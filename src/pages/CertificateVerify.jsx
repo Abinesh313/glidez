@@ -869,7 +869,7 @@ const CertificateVerify = () => {
                                         <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', marginBottom: '25px' }}>
                                             The creator panel is locked. Please enter the administrator passcode.
                                         </p>
-                                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', maxWidth: '400px', margin: '0 auto' }}>
+                                        <div className="admin-passcode-input-row" style={{ display: 'flex', gap: '10px', justifyContent: 'center', maxWidth: '400px', margin: '0 auto' }}>
                                             <input 
                                                 type="password" 
                                                 value={passcode}
