@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Search, CheckCircle, XCircle, Award, Calendar, User, BookOpen, Star, Clock, AlertCircle, Linkedin } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/common/SEO';
 import { jsPDF } from 'jspdf';
 import { GOOGLE_SCRIPT_URL } from '../data/certificates';
 
@@ -629,10 +629,19 @@ const CertificateVerify = () => {
 
     return (
         <div className="cert-verify-page">
-            <Helmet>
-                <title>Verify Certificate | Glidez Solutions</title>
-                <meta name="description" content="Verify the authenticity of your Glidez Solutions training certificate by entering your certificate number." />
-            </Helmet>
+            <SEO 
+                title="Verify Certificate"
+                description="Verify the authenticity of your Glidez Solutions training certificate by entering your certificate number."
+                canonical="/verify-certificate"
+                keywords="Verify Certificate, Certificate Validation, Glidez Solutions Credentials, Student Verification"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "name": "Certificate Verification | Glidez Solutions",
+                    "url": "https://glidez.org/verify-certificate",
+                    "description": "Verify the authenticity of your Glidez Solutions training certificate by entering your certificate number."
+                }}
+            />
 
             {/* Hero */}
             <section className="bg-black text-white section-padding text-center">

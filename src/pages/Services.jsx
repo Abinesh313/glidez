@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BarChart, Code, Globe, Shield, X, CheckCircle, Briefcase } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/common/SEO';
 
 const securityServices = [
     {
@@ -143,12 +143,49 @@ const otherServices = [
 const Services = () => {
     const [selectedService, setSelectedService] = useState(null);
 
+    const servicesSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Information Technology Services",
+        "provider": {
+            "@type": "Organization",
+            "name": "Glidez Solutions",
+            "url": "https://glidez.org/"
+        },
+        "areaServed": "Global",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "IT & Cybersecurity Services",
+            "itemListElement": [
+                ...securityServices.map((s, idx) => ({
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": s.title,
+                        "description": s.description
+                    }
+                })),
+                ...otherServices.map((s, idx) => ({
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": s.title,
+                        "description": s.description
+                    }
+                }))
+            ]
+        }
+    };
+
     return (
         <div className="services-page">
-            <Helmet>
-                <title>IT Services | Glidez Solutions</title>
-                <meta name="description" content="Explore our comprehensive IT services including Information Security, Digital Marketing, Website Development, and SEO Services." />
-            </Helmet>
+            <SEO 
+                title="Our IT Services"
+                description="Explore comprehensive IT services from Glidez Solutions: Application Security, Cloud Security, Penetration Testing, Compliance, Web Development, Digital Marketing, and SEO."
+                canonical="/services"
+                keywords="Information Security Services, Penetration Testing, Cloud Security, Web Development, Digital Marketing, SEO Services, ISO 27001, SOC 2, IT Internships, Glidez Solutions"
+                schema={servicesSchema}
+            />
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>Our <span className="text-red">Services</span></h1>
@@ -167,7 +204,7 @@ const Services = () => {
 
                     <div className="services-grid">
                         {securityServices.map((service, index) => (
-                            <div key={index} className="service-card" onClick={() => setSelectedService(service)} style={{ cursor: 'pointer', border: '1px solid #eee' }}>
+                            <div key={index} className="service-card" onClick={() => setSelectedService(service)} style={{ cursor: 'pointer', border: '1px solid #eee' }} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && setSelectedService(service)}>
                                 <div className="icon-box-small mb-3 text-red">
                                     {service.icon}
                                 </div>
@@ -186,7 +223,7 @@ const Services = () => {
 
                 <div className="services-grid">
                     {otherServices.map((service, index) => (
-                        <div key={index} id={service.id} className="service-card" onClick={() => setSelectedService(service)} style={{ cursor: 'pointer', border: '1px solid #eee' }}>
+                        <div key={index} id={service.id} className="service-card" onClick={() => setSelectedService(service)} style={{ cursor: 'pointer', border: '1px solid #eee' }} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && setSelectedService(service)}>
                             <div className="icon-box-small mb-3 text-red">
                                 {service.icon}
                             </div>
@@ -202,10 +239,10 @@ const Services = () => {
             {/* Modal */}
             {selectedService && (
                 <div className="modal-overlay" onClick={() => setSelectedService(null)}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close" onClick={() => setSelectedService(null)}><X size={24} /></button>
+                    <div className="modal-content" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                        <button className="modal-close" onClick={() => setSelectedService(null)} aria-label="Close Service Details Modal"><X size={24} /></button>
 
-                        <h2 className="text-red mb-4">{selectedService.title}</h2>
+                        <h2 id="modal-title" className="text-red mb-4">{selectedService.title}</h2>
 
                         <div className="modal-section">
                             <p className="mb-4"><strong>{selectedService.description}</strong></p>

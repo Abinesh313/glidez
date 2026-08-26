@@ -1,15 +1,79 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Code, BarChart, Globe, Lock, Briefcase, Linkedin, Instagram } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/common/SEO';
 
 const Home = () => {
+    const homeSchema = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Glidez Solutions",
+        "url": "https://glidez.org/",
+        "logo": "https://glidez.org/logo.png",
+        "image": "https://glidez.org/logo.png",
+        "description": "Empowering IT Excellence through top-tier Information Security Services, Digital Marketing, Website Development, SEO, and globally recognized IT training certifications.",
+        "email": "sathish@glidez.org",
+        "telephone": "+91 90438 67290",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka / Tamil Nadu",
+            "addressCountry": "IN"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/glidez/",
+            "https://www.instagram.com/glidez_solutions/"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "IT Services and Trainings",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Information Security Services",
+                        "description": "Application security, Cloud security, Penetration testing, and ISO 27001 compliance."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Website Development",
+                        "description": "Modern, scalable, and responsive web development."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Digital Marketing & SEO",
+                        "description": "Search engine optimization and brand visibility strategies."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "EducationalOccupationalProgram",
+                        "name": "IT Trainings & Certifications",
+                        "description": "Globally recognized IT and Cybersecurity certifications (EC-Council, ISACA, CompTIA, etc.)."
+                    }
+                }
+            ]
+        }
+    };
+
     return (
         <div className="home-page">
-            <Helmet>
-                <title>Glidez Solutions - Empowering IT Excellence</title>
-                <meta name="description" content="Empowering IT Excellence through top-tier Services & Training. We offer Web Development, Digital Marketing, and certified IT training programs." />
-            </Helmet>
+            <SEO 
+                title="Glidez Solutions - Empowering IT Excellence"
+                description="Empowering IT Excellence through top-tier Information Security Services, Digital Marketing, Website Development, SEO, and globally recognized IT training programs."
+                canonical="/"
+                keywords="Glidez Solutions, IT Services, Cybersecurity, Web Development, Digital Marketing, SEO, IT Certifications, Internship, Information Security, Bangalore, India"
+                schema={homeSchema}
+            />
+
             {/* Hero Section */}
             <section className="hero text-center">
                 <div className="hero-overlay"></div>
@@ -28,7 +92,7 @@ const Home = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-half">
-                            <h1>About <span className="text-red">Us</span></h1>
+                            <h2>About <span className="text-red">Us</span></h2>
                             <p>Founded in 2025, Glidez Solutions is a forward-thinking IT company dedicated to delivering quality services and world-class IT trainings. Our mission is to empower businesses with cutting-edge digital solutions while nurturing the next generation of IT professionals through globally recognized certifications.</p>
                             <Link to="/about" className="learn-more-link">Learn More <ArrowRight size={16} /></Link>
                         </div>
@@ -40,7 +104,7 @@ const Home = () => {
             <section className="section-padding bg-gray">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h1>Our <span className="text-red">Services</span></h1>
+                        <h2>Our <span className="text-red">Services</span></h2>
                         <p>We specialize in a wide range of IT solutions.</p>
                     </div>
 
@@ -87,7 +151,7 @@ const Home = () => {
             <section className="section-padding bg-gray">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h1>Our Trusted <span className="text-red">Clients</span></h1>
+                        <h2>Our Trusted <span className="text-red">Clients</span></h2>
                         <p>Proud to partner with industry leaders driving innovation.</p>
                     </div>
 
@@ -96,12 +160,12 @@ const Home = () => {
                             {[...Array(6)].map((_, i) => (
                                 <React.Fragment key={i}>
                                     <div className="client-card">
-                                        <img src="/partners/viacharging.jpg" alt="Via Charging" className="client-logo" />
+                                        <img src="/partners/viacharging.jpg" alt="Via Charging - Electric Vehicle Charging Infrastructure Client" className="client-logo" loading="lazy" />
                                         <h3>Via Charging</h3>
                                         <p className="text-sm text-gray-600">Revolutionizing electric vehicle infrastructure with smart, scalable charging solutions.</p>
                                     </div>
                                     <div className="client-card">
-                                        <img src="/partners/ellorahotels.jpg" alt="Ellora Hotels" className="client-logo" />
+                                        <img src="/partners/ellorahotels.jpg" alt="Ellora Hotels - Luxury Hospitality Client" className="client-logo" loading="lazy" />
                                         <h3>Ellora Hotels</h3>
                                         <p className="text-sm text-gray-600">Redefining luxury hospitality with seamless digital guest experiences and premium services.</p>
                                     </div>
@@ -116,7 +180,7 @@ const Home = () => {
             <section className="section-padding bg-gray social-callout">
                 <div className="container">
                     <div className="section-header text-center" style={{ marginBottom: 0 }}>
-                        <h1>Connect With <span className="text-red">Us</span></h1>
+                        <h2>Connect With <span className="text-red">Us</span></h2>
                         <p>Stay updated with our latest tech tips, student success stories, and cybersecurity alerts on our social channels.</p>
                         <div className="social-callout-btns" style={{ marginTop: '30px', display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
                             <a
@@ -124,6 +188,7 @@ const Home = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-outline"
+                                aria-label="Follow Glidez Solutions on LinkedIn"
                                 style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
                             >
                                 <Linkedin size={20} /> Follow on LinkedIn
@@ -133,6 +198,7 @@ const Home = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-outline"
+                                aria-label="Follow Glidez Solutions on Instagram"
                                 style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
                             >
                                 <Instagram size={20} /> Follow on Instagram
@@ -146,7 +212,7 @@ const Home = () => {
             <section className="section-padding">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h1>Why Choose <span className="text-red">Glidez Solutions?</span></h1>
+                        <h2>Why Choose <span className="text-red">Glidez Solutions?</span></h2>
                     </div>
 
                     <div className="features-grid">

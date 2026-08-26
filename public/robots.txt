@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://glidez.org/sitemap.xml
+Host: https://glidez.org

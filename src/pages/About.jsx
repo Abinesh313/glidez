@@ -1,13 +1,39 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/common/SEO';
 
 const About = () => {
+    const aboutSchema = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Glidez Solutions",
+        "url": "https://glidez.org/about",
+        "description": "Learn more about Glidez Solutions - your partner for digital transformation, cybersecurity services, and advanced IT training certifications.",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "Glidez Solutions",
+            "foundingDate": "2025",
+            "founder": {
+                "@type": "Person",
+                "name": "Sathish Kumar"
+            },
+            "url": "https://glidez.org/",
+            "logo": "https://glidez.org/logo.png",
+            "sameAs": [
+                "https://www.linkedin.com/company/glidez/",
+                "https://www.instagram.com/glidez_solutions/"
+            ]
+        }
+    };
+
     return (
         <div className="about-page">
-            <Helmet>
-                <title>About Us | Glidez Solutions</title>
-                <meta name="description" content="Learn more about Glidez Solutions - your partner for digital transformation and advanced IT training. Discover our mission, vision, and team." />
-            </Helmet>
+            <SEO 
+                title="About Us"
+                description="Learn more about Glidez Solutions - your partner for digital transformation, cybersecurity services, and advanced IT training certifications."
+                canonical="/about"
+                keywords="About Glidez Solutions, IT Company Bangalore, Cybersecurity Training, IT Consulting, Mission, Vision, Sathish Kumar"
+                schema={aboutSchema}
+            />
             <section className="bg-black text-white section-padding text-center">
                 <div className="container">
                     <h1>About <span className="text-red">Us</span></h1>
